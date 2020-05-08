@@ -5,11 +5,12 @@ chrome.storage.local.get("mapData", function (mapData) {
 });
 
 function calculate(mapData, demands) {
-  let ints = Object.assign({}, mapData);
-  for (let key in ints) {
-    ints[key] = 1;
-  }
-  console.log(ints);
+  // let ints = Object.assign({}, mapData);
+  // for (let key in ints) {
+  //   ints[key] = 1;
+  // }
+  // console.log(ints);
+
   const model = {
     optimize: "num",
     opType: "min",
@@ -22,6 +23,6 @@ function calculate(mapData, demands) {
   const result = solver.Solve(model);
   const t1 = performance.now();
   result.usedTime = t1 - t0;
-
+  console.log(result);
   chrome.storage.local.set({ plan: result });
 }

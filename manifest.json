@@ -5,7 +5,8 @@
   "permissions": [
     "declarativeContent",
     "storage",
-    "activeTab"
+    "activeTab",
+    "tabs"
   ],
   "background": {
     "scripts": [

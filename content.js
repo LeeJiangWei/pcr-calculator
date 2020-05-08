@@ -7,11 +7,50 @@ function f() {
   const recipeModeButton = buttons.children[1];
   const mapDropModeButton = buttons.children[2];
 
-  recipeModeButton.addEventListener("click", getDemands);
-  mapDropModeButton.addEventListener("click", getMapData);
+  // recipeModeButton.addEventListener("click", getDemands);
+  // mapDropModeButton.addEventListener("click", getMapData);
+
+  chrome.runtime.onMessage.addListener(function (
+    message,
+    sender,
+    sendResponse
+  ) {
+    // TODO: 解决DOM更新有延迟的问题
+    if (message.info === "parseRecipe") {
+      recipeModeButton.dispatchEvent(new Event("click"));
+      if (getDemands()) {
+        sendResponse({ info: "success" });
+      } else {
+        setTimeout(function () {
+          if (getDemands()) {
+            sendResponse({ info: "success" });
+          } else {
+            sendResponse({ info: "failure" });
+          }
+        }, 200);
+      }
+    } else if (message.info === "parseMapDrop") {
+      mapDropModeButton.dispatchEvent(new Event("click"));
+      if (getMapData()) {
+        sendResponse({ info: "success" });
+      } else {
+        setTimeout(function () {
+          if (getMapData()) {
+            sendResponse({ info: "success" });
+          } else {
+            sendResponse({ info: "failure" });
+          }
+        }, 200);
+      }
+    } else {
+      sendResponse({ info: "failure" });
+    }
+  });
 }
 
 function getDemands() {
+  if (!document.getElementsByClassName("recipe-mode")[0]) return false;
+
   const demandCardTable = document.getElementsByClassName("recipe-mode")[0]
     .children[0];
 
@@ -27,6 +66,8 @@ function getDemands() {
   chrome.storage.local.set({ demands: result }, function () {
     console.log("Demands storage complete.");
   });
+
+  return true;
 }
 
 function getMapData() {
@@ -34,12 +75,16 @@ function getMapData() {
   const rowsPerPageSelect = document.querySelector(
     "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(3) > div > div:nth-child(3) > div > div > select"
   );
+  if (!rowsPerPageSelect) return false;
+
   rowsPerPageSelect.value = 1000;
   rowsPerPageSelect.dispatchEvent(new Event("change"));
   setTimeout(getData, 1000);
 }
 
 function getData() {
+  if (!document.getElementsByClassName("mapDrop-table")[0]) return false;
+
   const mapDropTable = document.getElementsByClassName("mapDrop-table")[0];
   const tableRows = mapDropTable.getElementsByTagName("tr");
 
@@ -69,4 +114,6 @@ function getData() {
   chrome.storage.local.set({ mapData: result }, function () {
     console.log("MapData Storage complete.");
   });
+
+  return true;
 }
