@@ -1,6 +1,4 @@
-window.addEventListener("load", function () {
-  f();
-});
+window.addEventListener("load", f);
 
 function f() {
   const buttons = document.getElementsByClassName(
@@ -69,7 +67,7 @@ function f() {
       }
       result.push({ mapName, totalDemands, dropList });
     }
-    console.log(result);
+
     chrome.storage.local.set({ mapData: result }, function () {
       console.log("MapData Storage complete.");
     });

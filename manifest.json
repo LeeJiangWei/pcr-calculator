@@ -2,7 +2,11 @@
   "name": "公主连结刷图计算器",
   "version": "0.0.1",
   "description": "用于在兰德索尔图书馆中计算刷图次数",
-  "permissions": ["declarativeContent", "storage"],
+  "permissions": [
+    "declarativeContent",
+    "storage",
+    "activeTab"
+  ],
   "background": {
     "scripts": [
       "background.js"
@@ -13,7 +17,7 @@
     {
       "matches": ["https://pcredivewiki.tw/Armory"],
       "css": [],
-      "js": ["content.js"]
+      "js": ["content.js", "solver.js"]
     }
   ],
   "browser_action": {

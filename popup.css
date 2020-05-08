@@ -1,0 +1,15 @@
+html {
+    width: 500px;
+}
+
+.center {
+    width: 90%;
+    margin: auto auto 20px;
+}
+
+.button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
