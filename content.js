@@ -15,36 +15,28 @@ function f() {
     sender,
     sendResponse
   ) {
-    // TODO: 解决DOM更新有延迟的问题
     if (message.info === "parseRecipe") {
       recipeModeButton.dispatchEvent(new Event("click"));
-      if (getDemands()) {
-        sendResponse({ info: "success" });
-      } else {
-        setTimeout(function () {
-          if (getDemands()) {
-            sendResponse({ info: "success" });
-          } else {
-            sendResponse({ info: "failure" });
-          }
-        }, 200);
-      }
+      setTimeout(function () {
+        if (getDemands()) {
+          sendResponse({ info: "success" });
+        } else {
+          sendResponse({ info: "failure" });
+        }
+      }, 500);
     } else if (message.info === "parseMapDrop") {
       mapDropModeButton.dispatchEvent(new Event("click"));
-      if (getMapData()) {
-        sendResponse({ info: "success" });
-      } else {
-        setTimeout(function () {
-          if (getMapData()) {
-            sendResponse({ info: "success" });
-          } else {
-            sendResponse({ info: "failure" });
-          }
-        }, 200);
-      }
+      setTimeout(function () {
+        if (getMapData()) {
+          sendResponse({ info: "success" });
+        } else {
+          sendResponse({ info: "failure" });
+        }
+      }, 500);
     } else {
       sendResponse({ info: "failure" });
     }
+    return true;
   });
 }
 
@@ -77,9 +69,14 @@ function getMapData() {
   );
   if (!rowsPerPageSelect) return false;
 
-  rowsPerPageSelect.value = 1000;
-  rowsPerPageSelect.dispatchEvent(new Event("change"));
-  setTimeout(getData, 1000);
+  if (rowsPerPageSelect.value === 1000) {
+    return getData();
+  } else {
+    rowsPerPageSelect.value = 1000;
+    rowsPerPageSelect.dispatchEvent(new Event("change"));
+    setTimeout(getData, 500);
+    return true;
+  }
 }
 
 function getData() {
