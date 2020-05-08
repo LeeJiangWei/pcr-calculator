@@ -17,3 +17,8 @@ html {
 .mount {
     margin: 10px auto;
 }
+
+th, td {
+    padding: 5px;
+    text-align: left;
+}
