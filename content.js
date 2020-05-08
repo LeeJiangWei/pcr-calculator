@@ -53,7 +53,6 @@ function getDemands() {
     // const href = item.getElementsByTagName("a")[0].href;
     result[name] = { min: parseInt(number) };
   }
-  console.log(result);
 
   chrome.storage.local.set({ demands: result }, function () {
     console.log("Demands storage complete.");
@@ -107,7 +106,6 @@ function getData() {
     result[mapName] = dropList;
   }
 
-  console.log(result);
   chrome.storage.local.set({ mapData: result }, function () {
     console.log("MapData Storage complete.");
   });
