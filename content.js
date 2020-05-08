@@ -14,18 +14,14 @@ function f() {
     const demandCardTable = document.getElementsByClassName("recipe-mode")[0]
       .children[0];
 
-    let result = [];
+    let result = {};
     for (let item of demandCardTable.children) {
       const name = item.getElementsByTagName("h6")[0].innerText;
       const number = item.getElementsByClassName("badge-danger")[0].innerText;
-      const href = item.getElementsByTagName("a")[0].href;
-      const itemObject = {
-        name,
-        number,
-        href,
-      };
-      result.push(itemObject);
+      // const href = item.getElementsByTagName("a")[0].href;
+      result[name] = { min: parseInt(number) };
     }
+    console.log(result);
 
     chrome.storage.local.set({ demands: result }, function () {
       console.log("Demands storage complete.");
@@ -46,13 +42,13 @@ function f() {
     const mapDropTable = document.getElementsByClassName("mapDrop-table")[0];
     const tableRows = mapDropTable.getElementsByTagName("tr");
 
-    let result = [];
+    let result = {};
     for (let tr of tableRows) {
       if (!tr.children[1]) continue;
 
       const mapName = tr.children[0].innerText;
-      const totalDemands = tr.children[1].innerText;
-      let dropList = [];
+      // const totalDemands = tr.children[1].innerText;
+      let dropList = {};
 
       const items = tr.getElementsByClassName("mapDrop-item");
       for (let item of items) {
@@ -63,11 +59,13 @@ function f() {
 
         const name = item.getElementsByTagName("img")[0].title;
         const dropRate = item.getElementsByTagName("h6")[0].innerText;
-        dropList.push({ name, dropRate });
+        dropList[name] = parseFloat(dropRate) / 100.0;
+        dropList.num = 1;
       }
-      result.push({ mapName, totalDemands, dropList });
+      result[mapName] = dropList;
     }
 
+    console.log(result);
     chrome.storage.local.set({ mapData: result }, function () {
       console.log("MapData Storage complete.");
     });

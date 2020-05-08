@@ -5,5 +5,13 @@ chrome.storage.local.get("mapData", function (mapData) {
 });
 
 function calculate(mapData, demands) {
-  // TODO: calculate the result
+  const model = {
+    optimize: "num",
+    opType: "min",
+    constraints: demands,
+    variables: mapData,
+  };
+  const result = solver.Solve(model);
+
+  console.log(result);
 }
