@@ -1,0 +1,68 @@
+.center {
+    width: 40%;
+    margin: auto;
+}
+
+.container > * {
+    margin-bottom: 10px;
+}
+
+.divider {
+    height: 1px;
+    background-color: lightgray;
+}
+
+input {
+    outline: none;
+}
+
+label {
+    margin-right: 20px;
+}
+
+.radio, .checkbox {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #ffffff;
+    border: solid 1px #dddddd;
+    -webkit-border-radius: 0.6rem;
+    border-radius: 0.6rem;
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    cursor: default;
+    -webkit-appearance: none; /**隐藏原生控件**/
+}
+
+.checkbox {
+    border-radius: 0.1rem; /**复选框的圆角要小一些**/
+}
+
+/**选择后的样式**/
+.radio:checked, .checkbox:checked {
+    background-color: #04c9e8;
+    border: solid 1px #00adc8;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+    text-align: center;
+    background-clip: padding-box;
+}
+
+/**选择后 里面小对勾样式**/
+.radio:checked:before, .checkbox:checked:before {
+    content: '';
+    width: 0.5rem;
+    height: 0.3rem;
+    border: 1px solid #ffffff;
+    border-top: none;
+    border-right: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -0.25rem;
+    margin-top: -0.25rem;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}

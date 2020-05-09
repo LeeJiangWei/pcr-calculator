@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>公主连结刷图计算器</title>
+    <link rel="stylesheet" type="text/css" href="options.css">
+</head>
+<body class="center">
+<div class="container">
+    <h1>公主连结刷图计算器</h1>
+    <div id="mountNode"></div>
+    <div class="divider"></div>
+    <h2>选项</h2>
+    <form>
+        <h3>算法</h3>
+        <input class="radio" id="lpRadio" name="algorithm" type="radio" value="lp" checked>
+        <label for="lpRadio">线性规划</label>
+        <input class="radio" id="ipRadio" name="algorithm" type="radio" value="ip">
+        <label for="ipRadio">整数规划</label>
+        <input class="radio" id="greedyRadio" name="algorithm" type="radio" value="greedy">
+        <label for="greedyRadio">贪心法</label>
+
+        <h3>代价度量</h3>
+        <input class="radio" id="farmTimeRadio" name="metric" type="radio" value="farmTime" checked>
+        <label for="farmTimeRadio">刷图次数</label>
+        <input class="radio" id="apCostRadio" name="metric" type="radio" value="apCost">
+        <label for="apCostRadio">体力消耗</label>
+
+        <h3>掉落翻倍</h3>
+        <input class="radio" id="n1Radio" name="multiplier" type="radio" value=1 checked>
+        <label for="n1Radio">正常掉落（N1）</label>
+        <input class="radio" id="n2Radio" name="multiplier" type="radio" value=2>
+        <label for="n2Radio">2倍掉落（N2）</label>
+        <input class="radio" id="n3Radio" name="multiplier" type="radio" value=3>
+        <label for="n3Radio">3倍掉落（N3）</label>
+
+        <h3>其他</h3>
+        <input class="checkbox" id="displayIntCheckbox" type="checkbox">
+        <label for="displayIntCheckbox">强制显示整数（除了看着舒服以外并没有什么实际作用）</label>
+    </form>
+    <div class="divider"></div>
+    <h2>关于</h2>
+    <h4>您的star是我更新项目的最大动力 :)</h4>
+    <a href="https://github.com/LeeJiangWei/pcr-calculator">Github项目地址</a>
+    <p>如果在使用过程中遇到任何问题、困难、bug，欢迎在Github上提交issue。</p>
+    <p>或者直接联系我：</p>
+    <p>QQ: 865285578</p>
+    <p>邮箱: ljwskrskr@gmail.com</p>
+    <script src="options.js"></script>
+</div>
+</body>
+</html>
