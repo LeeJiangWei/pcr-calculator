@@ -23,6 +23,7 @@ function calculate(mapData, demands) {
   const result = solver.Solve(model);
   const t1 = performance.now();
   result.usedTime = t1 - t0;
-  console.log(result);
+  // console.log(result);
+
   chrome.storage.local.set({ plan: result });
 }

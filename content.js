@@ -33,11 +33,49 @@ function f() {
           sendResponse({ info: "failure" });
         }
       }, 500);
+    } else if (message.info === "mapTable") {
+      if (mapTable()) {
+        sendResponse({ info: "success" });
+      } else {
+        sendResponse({ info: "failure" });
+      }
     } else {
       sendResponse({ info: "failure" });
     }
     return true;
   });
+}
+
+function mapTable() {
+  // TODO: 完成映射逻辑
+  chrome.storage.local.get("plan", function (items) {
+    let { plan } = items;
+    let thead = document.querySelector(
+      "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(3) > table > thead"
+    );
+    let th = document.createElement("th");
+    th.innerText = "建议次数";
+    thead.appendChild(th);
+
+    let tbody = document.querySelector(
+      "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(3) > table > tbody"
+    );
+    console.log(tbody.children);
+    for (let tr of tbody.children) {
+      const mapName = tr.children[0].innerText;
+      console.log(mapName);
+      if (plan[mapName]) {
+        console.log("add:" + mapName + " value:" + plan[mapName]);
+        let td = document.createElement("td");
+        td.innerText = plan[mapName];
+        tr.appendChild(td);
+      } else {
+        console.log("remove:" + mapName);
+        tr.remove();
+      }
+    }
+  });
+  return true;
 }
 
 function getDemands() {
