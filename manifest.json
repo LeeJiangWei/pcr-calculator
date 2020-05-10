@@ -18,12 +18,12 @@
     {
       "matches": ["https://pcredivewiki.tw/Armory"],
       "css": [],
-      "js": ["content.js", "solver.js"]
+      "js": ["contents/content.js", "contents/solver.js"]
     }
   ],
-  "options_page": "options.html",
+  "options_page": "options/options.html",
   "page_action": {
-    "default_popup": "popup.html"
+    "default_popup": "components/popup.html"
   },
   "icons": {
     "16": "images/peko16.png",

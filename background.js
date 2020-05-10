@@ -10,9 +10,3 @@ chrome.runtime.onInstalled.addListener(function () {
     },
   ]);
 });
-
-chrome.runtime.onMessage.addListener(function (message) {
-  if (message === "calculate") {
-    chrome.tabs.executeScript({ file: "logic.js" });
-  }
-});

@@ -18,7 +18,7 @@ chrome.storage.onChanged.addListener(function (changes, areaName) {
 });
 
 calulateButton.addEventListener("click", function () {
-  chrome.tabs.executeScript({ file: "calculate.js" });
+  chrome.tabs.executeScript({ file: "/contents/calculate.js" });
 });
 
 parseRecipeButton.addEventListener("click", function () {
