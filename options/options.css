@@ -20,6 +20,11 @@ label {
     margin-right: 20px;
 }
 
+.comment {
+    font-size: 80%;
+    color:grey;
+}
+
 .radio, .checkbox {
     width: 1.2rem;
     height: 1.2rem;
