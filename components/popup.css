@@ -4,7 +4,7 @@ html {
 
 .center {
     width: 90%;
-    margin: auto auto 20px;
+    margin: 0 auto 0;
 }
 
 .button {
@@ -12,6 +12,8 @@ html {
     border: none;
     border-radius: 5px;
     font-size: 15px;
+    margin-bottom: 5px;
+    margin-right: 5px;
 }
 
 .button {

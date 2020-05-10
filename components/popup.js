@@ -1,12 +1,12 @@
 calulateButton = document.getElementById("calculate");
 parseRecipeButton = document.getElementById("recipe");
 parseMapDropButton = document.getElementById("mapDrop");
-mapButton = document.getElementById("map");
 
 chrome.storage.onChanged.addListener(function (changes, areaName) {
   const plan = changes.plan.newValue;
   if (plan.feasible) {
-    mountMessage("计算完成！用时 " + plan.usedTime + " 毫秒");
+    mountMessage("计算完成！用时 " + plan.usedTime + " 毫秒，你还可以:");
+    mountExtraButtons();
     generateTable(plan);
   } else {
     mountMessage(
@@ -49,22 +49,39 @@ parseMapDropButton.addEventListener("click", function () {
   });
 });
 
-mapButton.addEventListener("click", function () {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { info: "mapTable" }, function (
-      response
-    ) {
-      if (response.info === "success") {
-        mountMessage("成功映射至页面！");
-      } else {
-        mountMessage("映射至页面失败！");
-      }
-    });
-  });
-});
-
 function mountMessage(message) {
   document.getElementById("mount").innerHTML = message;
+}
+
+function mountExtraButtons() {
+  let extraButton = document.createElement("button");
+  extraButton.innerText = "在新标签页中显示";
+  extraButton.className = "button";
+  extraButton.addEventListener("click", function () {
+    chrome.tabs.create({ url: "/components/extra.html" });
+  });
+
+  let mapButton = document.createElement("button");
+  mapButton.innerText = "映射回原页面";
+  mapButton.className = "button";
+  mapButton.addEventListener("click", function () {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, { info: "mapTable" }, function (
+        response
+      ) {
+        if (response.info === "success") {
+          mountMessage("成功映射至页面！");
+        } else {
+          mountMessage("映射至页面失败！");
+        }
+      });
+    });
+  });
+
+  let mountNode = document.getElementById("mount");
+  mountNode.appendChild(document.createElement("br"));
+  mountNode.appendChild(extraButton);
+  mountNode.appendChild(mapButton);
 }
 
 function generateTable(plan) {
