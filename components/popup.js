@@ -102,6 +102,8 @@ function generateTable(plan) {
         html += `<tr><td>有界性</td><td>${plan[key]}</td></tr>`;
       } else if (key === "usedTime") {
         html += `<tr><td>用时</td><td>${plan[key]} ms</td></tr>`;
+      } else if (key === "isIntegral") {
+        html += `<tr><td>整数规划</td><td>${Boolean(plan[key])}</td></tr>`;
       } else {
         html += `<tr><td>${key}</td><td>${
           displayInt

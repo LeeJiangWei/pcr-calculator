@@ -1,29 +1,31 @@
-chrome.storage.local.get("mapData", function (mapData) {
-  chrome.storage.local.get("demands", function (demands) {
-    calculate(mapData.mapData, demands.demands);
-  });
+chrome.storage.local.get(["mapData", "demands", "options"], function (items) {
+  const { mapData, demands, options } = items;
+  calculate(mapData, demands, options);
 });
 
-function calculate(mapData, demands) {
-  // let ints = Object.assign({}, mapData);
-  // for (let key in ints) {
-  //   ints[key] = 1;
-  // }
-  // console.log(ints);
+function calculate(mapData, demands, options) {
+  const { algorithm } = options;
+
+  let ints = Object.assign({}, mapData);
+  for (let key in ints) {
+    ints[key] = 1;
+  }
 
   const model = {
     optimize: "num",
     opType: "min",
     constraints: demands,
     variables: mapData,
-    // ints: ints,
   };
+
+  if (algorithm === "ip") {
+    model.ints = ints;
+  }
 
   const t0 = performance.now();
   const result = solver.Solve(model);
   const t1 = performance.now();
   result.usedTime = t1 - t0;
-  // console.log(result);
 
   chrome.storage.local.set({ plan: result });
 }
