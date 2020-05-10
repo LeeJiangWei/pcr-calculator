@@ -4,7 +4,7 @@ chrome.storage.local.get(["mapData", "demands", "options"], function (items) {
 });
 
 function calculate(mapData, demands, options) {
-  const { algorithm } = options;
+  const { algorithm, timeOut } = options;
 
   let ints = Object.assign({}, mapData);
   for (let key in ints) {
@@ -16,6 +16,9 @@ function calculate(mapData, demands, options) {
     opType: "min",
     constraints: demands,
     variables: mapData,
+    options: {
+      timeout: timeOut,
+    },
   };
 
   if (algorithm === "ip") {

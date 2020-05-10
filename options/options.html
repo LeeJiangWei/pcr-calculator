@@ -17,8 +17,7 @@
         <label for="lpRadio">线性规划</label>
         <input class="radio" id="ipRadio" name="algorithm" type="radio" value="ip">
         <label for="ipRadio">整数规划</label>
-        <input class="radio" id="greedyRadio" name="algorithm" type="radio" value="greedy">
-        <label for="greedyRadio">贪心法</label>
+        <p class="comment">注：整数规划是NP完全问题，随着问题规模的增长，耗时会变得难以置信的长。出于程序完整性，我还是提供了这个功能，但除非计算的装备很少，不然请不要用此算法。</p>
 
         <h3>代价度量</h3>
         <input class="radio" id="farmTimeRadio" name="metric" type="radio" value="farmTime" checked>
@@ -38,6 +37,9 @@
         <input class="checkbox" id="displayIntCheckbox" type="checkbox">
         <label for="displayIntCheckbox">强制向上取整（除了看着舒服以外并没有什么实际作用）</label>
         <p class="comment">注：由于取整操作是非线性的，在显示的效果上，总次数很可能会小于每一关的次数之和。</p>
+        <label for="timeOutInput">超时时间设置（毫秒）</label>
+        <input class="number" id="timeOutInput" type="number" step="1" value=1000>
+        <p class="comment">注：如果计算超出了设置的时长，程序会立即返回。仅对整数规划生效。</p>
     </form>
     <div class="divider"></div>
     <h2>关于</h2>

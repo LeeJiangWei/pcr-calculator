@@ -46,6 +46,21 @@ label {
     border-radius: 0.1rem; /**复选框的圆角要小一些**/
 }
 
+.number {
+    width: 6rem;
+    height: 1.2rem;
+    background-color: #ffffff;
+    border: solid 1px #dddddd;
+    -webkit-border-radius: 0.6rem;
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 0.1rem;
+}
+
 /**选择后的样式**/
 .radio:checked, .checkbox:checked {
     background-color: #04c9e8;

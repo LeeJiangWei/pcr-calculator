@@ -6,6 +6,7 @@ const algorithmRadios = document.getElementsByName("algorithm");
 const multiplierRadios = document.getElementsByName("multiplier");
 const metricRadios = document.getElementsByName("metric");
 const displayIntCheckbox = document.getElementById("displayIntCheckbox");
+const timeOutInput = document.getElementById("timeOutInput");
 
 function onFormChanged() {
   let options = {
@@ -13,6 +14,7 @@ function onFormChanged() {
     metric: "farmTime",
     multiplier: 1,
     displayInt: false,
+    timeOut: 1000,
   };
 
   for (let radio of algorithmRadios) {
@@ -35,6 +37,8 @@ function onFormChanged() {
 
   options.displayInt = displayIntCheckbox.checked;
 
+  options.timeOut = parseFloat(timeOutInput.value);
+
   chrome.storage.local.set({ options }, function () {
     console.log("Options saved successfully.");
   });
@@ -54,5 +58,6 @@ function onFormLoaded() {
       radio.checked = options.multiplier === parseInt(radio.value);
     }
     displayIntCheckbox.checked = options.displayInt;
+    timeOutInput.value = options.timeOut;
   });
 }
