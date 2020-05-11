@@ -1,6 +1,7 @@
 calulateButton = document.getElementById("calculate");
 parseRecipeButton = document.getElementById("recipe");
 parseMapDropButton = document.getElementById("mapDrop");
+optionsButton = document.getElementById("options");
 
 chrome.storage.onChanged.addListener(function (changes, areaName) {
   const plan = changes.plan.newValue;
@@ -47,6 +48,14 @@ parseMapDropButton.addEventListener("click", function () {
       }
     });
   });
+});
+
+optionsButton.addEventListener("click", function () {
+  if (chrome.runtime.openOptionsPage) {
+    chrome.runtime.openOptionsPage();
+  } else {
+    window.open(chrome.runtime.getURL("/options/options.html"));
+  }
 });
 
 function mountMessage(message) {
