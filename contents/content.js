@@ -26,6 +26,7 @@ function f() {
       }, 500);
     } else if (message.info === "parseMapDrop") {
       mapDropModeButton.dispatchEvent(new Event("click"));
+      removeExtraNodes();
       setTimeout(function () {
         if (getMapData()) {
           sendResponse({ info: "success" });
@@ -34,6 +35,7 @@ function f() {
         }
       }, 500);
     } else if (message.info === "mapTable") {
+      mapDropModeButton.dispatchEvent(new Event("click"));
       if (mapTable()) {
         sendResponse({ info: "success" });
       } else {
@@ -47,7 +49,7 @@ function f() {
 }
 
 function mapTable() {
-  // TODO: 完成映射逻辑
+  removeExtraNodes();
   chrome.storage.local.get("plan", function (items) {
     let { plan } = items;
     let thead = document.querySelector(
@@ -55,27 +57,36 @@ function mapTable() {
     );
     let th = document.createElement("th");
     th.innerText = "建议次数";
+    th.style.verticalAlign = "baseline";
+    th.className = "extra";
     thead.appendChild(th);
 
     let tbody = document.querySelector(
       "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(3) > table > tbody"
     );
-    console.log(tbody.children);
-    for (let tr of tbody.children) {
+
+    Array.from(tbody.children).forEach(function (tr) {
       const mapName = tr.children[0].innerText;
-      console.log(mapName);
       if (plan[mapName]) {
-        console.log("add:" + mapName + " value:" + plan[mapName]);
         let td = document.createElement("td");
         td.innerText = plan[mapName];
+        td.className = "extra";
         tr.appendChild(td);
       } else {
-        console.log("remove:" + mapName);
         tr.remove();
       }
-    }
+    });
   });
   return true;
+}
+
+function removeExtraNodes() {
+  let nodes = document.getElementsByClassName("extra");
+  if (nodes) {
+    Array.from(nodes).forEach(function (node) {
+      node.remove();
+    });
+  }
 }
 
 function getDemands() {
