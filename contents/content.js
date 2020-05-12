@@ -7,8 +7,10 @@ function f() {
   const recipeModeButton = buttons.children[1];
   const mapDropModeButton = buttons.children[2];
 
-  // recipeModeButton.addEventListener("click", getDemands);
-  // mapDropModeButton.addEventListener("click", getMapData);
+  const addCharacterButton = document.querySelector(
+    "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(1) > div.row.mb-3 > div > div > button:nth-child(1)"
+  );
+  addCharacterButton.addEventListener("click", removeExtraNodes);
 
   chrome.runtime.onMessage.addListener(function (
     message,
@@ -77,7 +79,7 @@ function mapTable() {
         td.className = "extra";
         tr.appendChild(td);
       } else {
-        tr.remove();
+        tr.style.display = "none";
       }
     });
   });
@@ -143,7 +145,7 @@ function getData() {
 
     const mapName = tr.children[0].innerText;
     // const totalDemands = tr.children[1].innerText;
-    let dropList = {};
+    let dropData = {};
 
     const items = tr.getElementsByClassName("mapDrop-item");
     for (let item of items) {
@@ -153,10 +155,13 @@ function getData() {
 
       const name = item.getElementsByTagName("img")[0].title;
       const dropRate = item.getElementsByTagName("h6")[0].innerText;
-      dropList[name] = parseFloat(dropRate) / 100.0;
-      dropList.num = 1;
+      dropData[name] = parseFloat(dropRate) / 100.0;
+      dropData.farmTime = 1;
     }
-    result[mapName] = dropList;
+    const chapterIndex = mapName.slice(0, mapName.indexOf("-"));
+    const apCost = Math.min(7 + Math.ceil(chapterIndex / 3), 10);
+    result[mapName] = dropData;
+    result[mapName].apCost = apCost;
   }
 
   chrome.storage.local.set({ mapData: result }, function () {

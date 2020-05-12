@@ -4,7 +4,7 @@ chrome.storage.local.get(["mapData", "demands", "options"], function (items) {
 });
 
 function calculate(mapData, demands, options) {
-  const { algorithm, timeOut } = options;
+  const { algorithm, timeOut, metric } = options;
 
   let ints = Object.assign({}, mapData);
   for (let key in ints) {
@@ -12,7 +12,7 @@ function calculate(mapData, demands, options) {
   }
 
   const model = {
-    optimize: "num",
+    optimize: metric,
     opType: "min",
     constraints: demands,
     variables: mapData,
