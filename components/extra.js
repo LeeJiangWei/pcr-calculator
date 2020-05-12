@@ -15,8 +15,8 @@ chrome.storage.local.get(["options", "plan"], function (items) {
         : plan[key] / multiplier;
 
       const summedApCost = displayInt
-        ? Math.ceil(plan[key]) * apCost
-        : plan[key] * apCost;
+        ? Math.ceil(plan[key] / multiplier) * apCost
+        : (plan[key] / multiplier) * apCost;
 
       html += `<tr><td>${key}</td><td>${farmTime}</td><td>${summedApCost}</td></tr>`;
 
