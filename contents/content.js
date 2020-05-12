@@ -105,7 +105,6 @@ function getDemands() {
   for (let item of demandCardTable.children) {
     const name = item.getElementsByTagName("h6")[0].innerText;
     const number = item.getElementsByClassName("badge-danger")[0].innerText;
-    // const href = item.getElementsByTagName("a")[0].href;
     result[name] = { min: parseInt(number) };
   }
 
@@ -117,7 +116,6 @@ function getDemands() {
 }
 
 function getMapData() {
-  // 让一页显示全部掉落地图
   const rowsPerPageSelect = document.querySelector(
     "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(3) > div > div:nth-child(3) > div > div > select"
   );
@@ -144,7 +142,6 @@ function getData() {
     if (!tr.children[1]) continue;
 
     const mapName = tr.children[0].innerText;
-    // const totalDemands = tr.children[1].innerText;
     let dropData = {};
 
     const items = tr.getElementsByClassName("mapDrop-item");
