@@ -50,8 +50,10 @@ function f() {
 
 function mapTable() {
   removeExtraNodes();
-  chrome.storage.local.get("plan", function (items) {
-    let { plan } = items;
+  chrome.storage.local.get(["plan", "options"], function (items) {
+    let { plan, options } = items;
+    const { multiplier, displayInt } = options;
+
     let thead = document.querySelector(
       "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(3) > table > thead"
     );
@@ -69,7 +71,9 @@ function mapTable() {
       const mapName = tr.children[0].innerText;
       if (plan[mapName]) {
         let td = document.createElement("td");
-        td.innerText = plan[mapName];
+        td.innerText = displayInt
+          ? Math.ceil(plan[mapName] / multiplier)
+          : plan[mapName] / multiplier;
         td.className = "extra";
         tr.appendChild(td);
       } else {
