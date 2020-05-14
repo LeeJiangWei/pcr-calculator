@@ -30,6 +30,11 @@ html {
 }
 
 th, td {
+    font-size: 1.25em;
     padding: 5px;
     text-align: left;
+}
+
+p {
+    font-size: 1.1em;
 }

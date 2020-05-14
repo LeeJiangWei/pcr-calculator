@@ -75,7 +75,7 @@ function mapTable() {
         let td = document.createElement("td");
         td.innerText = displayInt
           ? Math.ceil(plan[mapName] / multiplier)
-          : plan[mapName] / multiplier;
+          : (plan[mapName] / multiplier).toFixed(2);
         td.className = "extra";
         tr.appendChild(td);
       } else {

@@ -1,6 +1,6 @@
 {
   "name": "公主连结刷图计算器",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "用于在兰德索尔图书馆中计算刷图次数",
   "permissions": [
     "declarativeContent",

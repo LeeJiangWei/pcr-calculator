@@ -10,13 +10,10 @@ chrome.storage.local.get(["options", "plan"], function (items) {
       const chapterIndex = key.slice(0, key.indexOf("-"));
       const apCost = Math.min(7 + Math.ceil(chapterIndex / 3), 10);
 
-      const farmTime = displayInt
-        ? Math.ceil(plan[key] / multiplier)
-        : plan[key] / multiplier;
+      let farmTime = parseFloat((plan[key] / multiplier).toFixed(2));
+      farmTime = displayInt ? Math.ceil(farmTime) : farmTime;
 
-      const summedApCost = displayInt
-        ? Math.ceil(plan[key] / multiplier) * apCost
-        : (plan[key] / multiplier) * apCost;
+      const summedApCost = parseFloat((farmTime * apCost).toFixed(2));
 
       html += `<tr><td>${key}</td><td>${farmTime}</td><td>${summedApCost}</td></tr>`;
 
@@ -24,7 +21,9 @@ chrome.storage.local.get(["options", "plan"], function (items) {
       totalApCost += summedApCost;
     }
   }
-  html = `<table><tr><th>关卡名</th><th>建议次数</th><th>体力消耗</th></tr>${html}<tr><td>总计</td><td>${totalFarmTime}</td><td>${totalApCost}</td></tr></table>`;
+  html = `<table><tr><th>关卡名</th><th>建议次数</th><th>体力消耗</th></tr>${html}<tr><td>总计</td><td>${totalFarmTime.toFixed(
+    2
+  )}</td><td>${totalApCost.toFixed(2)}</td></tr></table>`;
 
   let table = document.createElement("div");
   table.innerHTML = html;
