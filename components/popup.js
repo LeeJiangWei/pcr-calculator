@@ -116,9 +116,11 @@ function generateTable(plan) {
         totalApCost += summedApCost;
       }
     }
-    html = `<table><tr><th>关卡名</th><th>建议次数</th><th>体力消耗</th></tr>${html}<tr><td>总计</td><td>${totalFarmTime.toFixed(
-      2
-    )}</td><td>${totalApCost.toFixed(2)}</td></tr></table>`;
+    html = `<table><tr><th>关卡名</th><th>建议次数</th><th>体力消耗</th></tr>${html}<tr><td>总计</td><td>${
+      displayInt ? Math.ceil(totalFarmTime) : totalFarmTime.toFixed(2)
+    }</td><td>${
+      displayInt ? Math.ceil(totalApCost) : totalApCost.toFixed(2)
+    }</td></tr></table>`;
 
     let table = document.createElement("div");
     table.innerHTML = html;
