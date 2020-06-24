@@ -1,12 +1,11 @@
 {
   "name": "公主连结刷图计算器",
-  "version": "1.0.2",
-  "description": "用于在兰德索尔图书馆中计算刷图次数",
+  "version": "1.0.3",
+  "description": "这个扩展为手机游戏“公主连结: Re Dive”的非官方Wiki网站提供了额外的功能，可以为你计算出游玩计划，以尽量地节省游戏资源（体力值）。",
   "permissions": [
     "declarativeContent",
     "storage",
-    "activeTab",
-    "tabs"
+    "activeTab"
   ],
   "background": {
     "scripts": [
