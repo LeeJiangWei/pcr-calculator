@@ -3,8 +3,8 @@
 
 ## 安装
    ~~辣鸡Google开发者注册账户要5美元，👴现在不知道怎么办了~~
-   + 在Chrome应用商店中安装（推荐）
-      + 目前审核还没有通过，而且因为疫情原因可能需要较长一段时间。审核通过以后才能通过此方法安装。
+   + 在Chrome应用商店中安装（推荐，但需要科学上网）
+      + 终于过审啦，再也不用被停用开发者模式的提示烦了。点此进入Chrome商店页面：[公主连接刷图计算器](https://chrome.google.com/webstore/detail/%E5%85%AC%E4%B8%BB%E8%BF%9E%E7%BB%93%E5%88%B7%E5%9B%BE%E8%AE%A1%E7%AE%97%E5%99%A8/ogbcpldmfpobkcoefefcegmajngogejd)
    + 以开发者模式安装
       1. 下载源代码，解压
       2. Chrome浏览器地址栏输入`chrome://extensions/`，进入扩展管理界面
