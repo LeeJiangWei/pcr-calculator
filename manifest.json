@@ -1,6 +1,6 @@
 {
   "name": "公主连结刷图计算器",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "这个扩展为手机游戏“公主连结: Re Dive”的非官方Wiki网站提供了额外的功能，可以为你计算出游玩计划，以尽量地节省游戏资源（体力值）。",
   "permissions": [
     "declarativeContent",
