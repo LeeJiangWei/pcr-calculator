@@ -58,6 +58,9 @@ optionsButton.addEventListener("click", function () {
   }
 });
 
+// let th = document.getElementById("thName");
+// th.addEventListener("click", onTableHeadClicked);
+
 function mountMessage(message) {
   document.getElementById("mount").innerHTML = message;
 }
@@ -94,9 +97,12 @@ function mountExtraButtons() {
 }
 
 // TODO: Click table head to sort on that attr
-function onTableHeadClicked() {
-  console.log("Table CLICKED!");
-}
+// function onTableHeadClicked() {
+//   chrome.storage.local.get("plan", function (items) {
+//     const { plan } = items;
+//     generateTable(plan, "up", "farmTime");
+//   });
+// }
 
 function generateTable(plan, sort = "down", axis = "mapName") {
   chrome.storage.local.get("options", function (items) {
