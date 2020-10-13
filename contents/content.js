@@ -1,14 +1,14 @@
 window.addEventListener("load", f);
 
 function f() {
-  const buttons = document.getElementsByClassName(
-    "d-flex flex-nowrap mb-3 armory-function"
-  )[0];
+  const buttons = document.querySelector(
+    "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(2) > div > h3 > div > div.col-12.col-lg-6.mb-3 > div"
+  );
   const recipeModeButton = buttons.children[1];
   const mapDropModeButton = buttons.children[2];
 
   const addCharacterButton = document.querySelector(
-    "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(1) > div.row.mb-3 > div > div > button:nth-child(1)"
+    "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(1) > div.row.mb-1 > div > div > button:nth-child(1)"
   );
   addCharacterButton.addEventListener("click", removeExtraNodes);
 
@@ -56,8 +56,9 @@ function mapTable() {
     let { plan, options } = items;
     const { multiplier, displayInt } = options;
 
+    // 包含一组th的父元素
     let thead = document.querySelector(
-      "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(3) > table > thead"
+      "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(3) > table > thead > tr:nth-child(2)"
     );
     let th = document.createElement("th");
     th.innerText = "建议次数";
@@ -71,6 +72,7 @@ function mapTable() {
 
     Array.from(tbody.children).forEach(function (tr) {
       const mapName = tr.children[0].innerText;
+      tr.children[0].setAttribute("rowspan", "1");
       if (plan[mapName]) {
         let td = document.createElement("td");
         td.innerText = displayInt
