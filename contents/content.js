@@ -4,6 +4,7 @@ function f() {
   const buttons = document.querySelector(
     "#app > div.main > div > div.item-box > div.row.mb-3 > div:nth-child(2) > div > h3 > div > div.col-12.col-lg-12.mb-3 > div"
   );
+  
   const recipeModeButton = buttons.children[1];
   const mapDropModeButton = buttons.children[2];
 
@@ -123,7 +124,7 @@ function getMapData() {
   );
   if (!rowsPerPageSelect) return false;
 
-  if (rowsPerPageSelect.value === 1000) {
+  if (rowsPerPageSelect.value == 1000) {
     return getData();
   } else {
     rowsPerPageSelect.value = 1000;
